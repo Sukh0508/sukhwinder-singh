@@ -1,0 +1,421 @@
+/* static/css/admin.css */
+/* ------------------------------------------------------------------
+   Aurora Console - Premium Django Admin Theme
+   Modern SaaS Dashboard Style | No Django Branding
+   Dark Theme | Glassmorphism | Smooth Animations
+------------------------------------------------------------------ */
+
+/* ---------- RESET & BASE ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a0f;
+    --bg-deep: #050508;
+    --card-bg: rgba(18, 18, 28, 0.65);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --glow-cyan: rgba(0, 240, 255, 0.4);
+    --glow-purple: rgba(123, 44, 191, 0.5);
+    --glow-pink: rgba(199, 125, 255, 0.3);
+    --text-primary: rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.4);
+    --input-bg: rgba(12, 12, 18, 0.8);
+    --input-border: rgba(255, 255, 255, 0.12);
+    --input-focus: #00f0ff;
+    --btn-gradient-start: #7b2cbf;
+    --btn-gradient-end: #00f0ff;
+    --error-red: #ff4d6d;
+    --success-green: #00f5d4;
+    --border-radius-sm: 12px;
+    --border-radius-md: 20px;
+    --border-radius-lg: 28px;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+body.login-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at 20% 30%, #0d0d1a, #030307);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ---------- ANIMATED GRADIENT ORBS (background lighting) ---------- */
+.gradient-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatOrb 18s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    width: 60vmax;
+    height: 60vmax;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.25), rgba(0, 240, 255, 0));
+    top: -20vh;
+    left: -20vw;
+}
+
+.orb-2 {
+    width: 55vmax;
+    height: 55vmax;
+    background: radial-gradient(circle, rgba(123, 44, 191, 0.3), rgba(123, 44, 191, 0));
+    bottom: -15vh;
+    right: -15vw;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 40vmax;
+    height: 40vmax;
+    background: radial-gradient(circle, rgba(199, 125, 255, 0.2), rgba(199, 125, 255, 0));
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+    animation-duration: 22s;
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(5%, 8%) scale(1.08);
+    }
+}
+
+/* ---------- LOGIN CONTAINER ---------- */
+.login-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    animation: fadeSlideUp 0.6s var(--transition-smooth);
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- GLASS CARD (Glassmorphism) ---------- */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--card-border);
+    padding: 2.5rem 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.glass-card:hover {
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 240, 255, 0.1) inset;
+    transform: translateY(-2px);
+}
+
+/* ---------- BRAND HEADER ---------- */
+.brand-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
+    transition: filter var(--transition-fast);
+}
+
+.logo-wrapper:hover .logo-icon {
+    filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.7));
+}
+
+.brand-name {
+    font-size: 1.9rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #c77dff 50%, #00f0ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.brand-tagline {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.3px;
+    font-weight: 400;
+}
+
+/* ---------- ALERT MESSAGES (Error styling) ---------- */
+.alert {
+    background: rgba(255, 77, 109, 0.12);
+    border-left: 3px solid var(--error-red);
+    border-radius: var(--border-radius-sm);
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(4px);
+    font-size: 0.85rem;
+    color: #ffb3c1;
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+.alert svg {
+    flex-shrink: 0;
+    color: var(--error-red);
+}
+
+/* ---------- FORM INPUTS (Premium Styling) ---------- */
+.input-group {
+    margin-bottom: 1.6rem;
+}
+
+.input-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+    transition: color var(--transition-fast);
+}
+
+.input-field-wrapper {
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.modern-input {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--border-radius-md);
+    padding: 0.9rem 1rem 0.9rem 46px;
+    font-size: 0.95rem;
+    font-family: 'Inter', monospace;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+    outline: none;
+    font-weight: 450;
+    letter-spacing: -0.2px;
+}
+
+.modern-input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 400;
+}
+
+.modern-input:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2), 0 0 0 1px rgba(0, 240, 255, 0.3) inset;
+    background: rgba(8, 8, 14, 0.95);
+}
+
+.input-field-wrapper.focused .input-icon {
+    color: var(--input-focus);
+}
+
+/* ---------- MODERN LOGIN BUTTON (Hover + Animation) ---------- */
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    margin-top: 0.8rem;
+    background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.2px;
+    box-shadow: 0 8px 20px -8px rgba(123, 44, 191, 0.5);
+}
+
+.login-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.login-button:hover::before {
+    left: 100%;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -12px rgba(0, 240, 255, 0.6);
+    gap: 16px;
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+.button-arrow {
+    transition: transform 0.25s ease;
+}
+
+.login-button:hover .button-arrow {
+    transform: translateX(6px);
+}
+
+/* ---------- FOOTER / ADMIN NOTE ---------- */
+.admin-note {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.5rem;
+}
+
+.dot-sep {
+    font-size: 0.6rem;
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media (max-width: 560px) {
+    .glass-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .brand-name {
+        font-size: 1.6rem;
+    }
+    
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .modern-input {
+        padding: 0.8rem 1rem 0.8rem 42px;
+        font-size: 0.9rem;
+    }
+    
+    .login-button {
+        padding: 0.8rem 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body.login-body {
+        padding: 16px;
+    }
+    
+    .glass-card {
+        padding: 1.6rem 1.2rem;
+    }
+    
+    .admin-note {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .input-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* ---------- UTILITY / HIDE DJANGO DEFAULTS ---------- */
+/* Completely override any default Django admin classes that might sneak in */
+#header, .breadcrumbs, #user-tools, .module caption, .dashboard .module table, 
+#content-related, .object-tools, .login .form-row label, .submit-row, 
+.djangopanel, .admin-branding, .django-admin-logo {
+    display: none !important;
+}
+
+/* Additional fallback to erase any default Django text */
+body::before, body::after {
+    content: none !important;
+}
+
+/* Ensure no hidden Django footers appear */
+footer, .footer, .admin-footer {
+    display: none;
+}
+
+/* ---------- SMOOTH SCROLL ---------- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ---------- AUTOFILL STYLE OVERRIDE ---------- */
+.modern-input:-webkit-autofill,
+.modern-input:-webkit-autofill:hover,
+.modern-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary);
+    -webkit-box-shadow: 0 0 0px 1000px rgba(12, 12, 18, 0.95) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: var(--input-focus);
+}

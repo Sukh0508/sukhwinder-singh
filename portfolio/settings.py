@@ -28,9 +28,17 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+UNFOLD = {
+    "SITE_TITLE": "Admin Dashboard",
+    "SITE_HEADER": "Sukhwinder 👋",
+    # "SITE_SUBHEADER": "",
+}
+
 # Application definition
 
 INSTALLED_APPS = [
+   "unfold",
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
